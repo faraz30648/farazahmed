@@ -542,6 +542,7 @@
       scroll-behavior: smooth;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline mandatory;
+      -webkit-overflow-scrolling: touch; /* smoother touch scrolling */
     }
 
     .testimonials-item {
@@ -1107,6 +1108,71 @@
       .social-list { justify-content: center; }
       .timeline-text { max-width: 700px; }
     }
+
+    /* === MOBILE FIX FOR WORK EXPERIENCE CARDS (Option A: full text) === */
+    @media (max-width: 579px) {
+      .testimonials-list {
+        margin: 0;
+        padding: 20px 12px 30px;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .testimonials-item {
+        min-width: calc(100% - 24px);
+        scroll-snap-align: start;
+      }
+
+      .content-card {
+        padding: 20px;
+        padding-top: 60px; /* more room for avatar */
+      }
+
+/* ===== FINAL POLISH FOR MOBILE WORK EXPERIENCE CARDS ===== */
+@media (max-width: 579px) {
+
+  /* Fix logo and remove unnecessary bottom space */
+  .content-card {
+    padding-top: 40px !important;   /* was 50px */
+    min-height: 260px !important;   /* NEW — equal card height */
+  }
+
+  /* Move text left slightly and reduce empty area */
+  .testimonials-item-title,
+  [data-testimonials-designation],
+  [data-testimonials-date] {
+    margin-left: 70px !important; /* was 75/68px */
+  }
+
+  /* Make date smaller & more elegant */
+  [data-testimonials-date] {
+    font-size: 12px !important;       /* smaller */
+    color: var(--light-gray-70) !important;
+    font-weight: 400 !important;      /* subtle */
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Same date style inside modal */
+  .modal-info time {
+    font-size: 13px !important;
+    color: var(--light-gray-70) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Avatar alignment (final tuned) */
+  .testimonials-avatar-box {
+    transform: translate(15px, -5px) !important;
+  }
+
+  .testimonials-avatar-box img {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain;
+  }
+}
+
+
   </style>
 </head>
 
@@ -1858,42 +1924,42 @@ creation, adopted by multiple teams.
 
     // contact form variables
     const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
+    const formInputs = document.querySelectorAll("[data-form-input]");
+    const formBtn = document.querySelector("[data-form-btn]");
 
-// Form validation (keep existing)
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+    // Form validation (keep existing)
+    for (let i = 0; i < formInputs.length; i++) {
+      formInputs[i].addEventListener("input", function () {
+        if (form.checkValidity()) {
+          formBtn.removeAttribute("disabled");
+        } else {
+          formBtn.setAttribute("disabled", "");
+        }
+      });
     }
-  });
-}
 
-// Handle form submission
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-  
-  const formData = new FormData(form);
-  const fullname = formData.get('fullname');
-  const email = formData.get('email');
-  const message = formData.get('message');
-  
-  const subject = encodeURIComponent(`Contact Form: Message from ${fullname}`);
-  const body = encodeURIComponent(
-    `Name: ${fullname}\n` +
-    `Email: ${email}\n` +
-    `Message:\n${message}`
-  );
-  
-  window.location.href = `mailto:faraz30648@gmail.com?subject=${subject}&body=${body}`;
-  
-  // Optional: Reset form and disable button
-  form.reset();
-  formBtn.setAttribute("disabled", "");
-});
+    // Handle form submission
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const fullname = formData.get('fullname');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      const subject = encodeURIComponent(`Contact Form: Message from ${fullname}`);
+      const body = encodeURIComponent(
+        `Name: ${fullname}\n` +
+        `Email: ${email}\n` +
+        `Message:\n${message}`
+      );
+      
+      window.location.href = `mailto:faraz30648@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Optional: Reset form and disable button
+      form.reset();
+      formBtn.setAttribute("disabled", "");
+    });
 
 
     // page navigation variables
