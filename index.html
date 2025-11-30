@@ -1766,7 +1766,9 @@ creation, adopted by multiple teams.
 
           <h3 class="h3 form-title">Contact Form</h3>
 
-          <form action="#" class="form" data-form>
+          <form action="mailto:faraz30648@gmail.com" 
+      method="post" 
+      enctype="text/plain" class="form" data-form>
 
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
@@ -1856,22 +1858,43 @@ creation, adopted by multiple teams.
 
     // contact form variables
     const form = document.querySelector("[data-form]");
-    const formInputs = document.querySelectorAll("[data-form-input]");
-    const formBtn = document.querySelector("[data-form-btn]");
+const formInputs = document.querySelectorAll("[data-form-input]");
+const formBtn = document.querySelector("[data-form-btn]");
 
-    // add event to all form input field
-    for (let i = 0; i < formInputs.length; i++) {
-      formInputs[i].addEventListener("input", function () {
-
-        // check form validation
-        if (form.checkValidity()) {
-          formBtn.removeAttribute("disabled");
-        } else {
-          formBtn.setAttribute("disabled", "");
-        }
-
-      });
+// Form validation (keep existing)
+for (let i = 0; i < formInputs.length; i++) {
+  formInputs[i].addEventListener("input", function () {
+    if (form.checkValidity()) {
+      formBtn.removeAttribute("disabled");
+    } else {
+      formBtn.setAttribute("disabled", "");
     }
+  });
+}
+
+// Handle form submission
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  const fullname = formData.get('fullname');
+  const email = formData.get('email');
+  const message = formData.get('message');
+  
+  const subject = encodeURIComponent(`Contact Form: Message from ${fullname}`);
+  const body = encodeURIComponent(
+    `Name: ${fullname}\n` +
+    `Email: ${email}\n` +
+    `Message:\n${message}`
+  );
+  
+  window.location.href = `mailto:faraz30648@gmail.com?subject=${subject}&body=${body}`;
+  
+  // Optional: Reset form and disable button
+  form.reset();
+  formBtn.setAttribute("disabled", "");
+});
+
 
     // page navigation variables
     const navigationLinks = document.querySelectorAll("[data-nav-link]");
