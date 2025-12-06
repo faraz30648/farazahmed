@@ -2,2302 +2,2000 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Faraz Ahmed</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/r2srGXB4/Untitled-design-1.png">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
-    <style>
-/* ================================
-   CLEAN CAROUSEL SYSTEM (FINAL)
-   ================================ */
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faraz Ahmed</title>
 
-/* Carousel container structure */
-.carousel-container {
-    position: relative;
-}
+  <link rel="icon" type="image/png" href="https://i.ibb.co/k6hcZCBj/Untitled-design-6-removebg-preview.png">
 
-/* Horizontal track */
-.carousel-track {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    padding: 0 0 16px 0;
-    scrollbar-width: none;
-}
-.carousel-track::-webkit-scrollbar {
-    display: none;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-/* === CARD DESIGN === */
-.carousel-item {
-    position: relative;
-    min-width: calc(100% - 60px); /* next card peeks */
-    height: 150px;                /* uniform card height */
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 20px;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* center vertically */
-    padding-right: 110px;    /* create space for bigger logo */
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-}
+  <style>
+    /*-----------------------------------*\
+      #style.css
+    \*-----------------------------------*/
 
-/* Work logo inside card */
-.carousel-item .work-logo {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    :root {
 
-    width: 74px;
-    height: 74px;
+      /**
+       * colors
+       */
 
-    object-fit: contain;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.1);
-    pointer-events: none;
-}
+      /* gradient */
 
+      --bg-gradient-onyx: linear-gradient(
+        to bottom right, 
+        hsl(240, 1%, 25%) 3%, 
+        hsl(0, 0%, 19%) 97%
+      );
+      --bg-gradient-jet: linear-gradient(
+        to bottom right, 
+        hsla(240, 1%, 18%, 0.251) 0%, 
+        hsla(240, 2%, 11%, 0) 100%
+      ), hsl(240, 2%, 13%);
+      
+      /* ROYAL BLUE COLOR THEME (Primary) */
+      --royal-blue: hsl(225, 73%, 57%); /* Royal Blue solid */
+      --bg-gradient-blue-1: linear-gradient(
+        to bottom right, 
+        hsl(225, 73%, 57%) 0%, 
+        hsla(220, 70%, 50%, 0) 50%
+      );
+      --bg-gradient-blue-2: linear-gradient(
+        135deg, 
+        hsla(225, 73%, 57%, 0.251) 0%, 
+        hsla(220, 70%, 50%, 0) 59.86%
+      ), hsl(240, 2%, 13%);
+      --text-gradient-blue: linear-gradient(
+        to right, 
+        hsl(225, 73%, 57%), 
+        hsl(220, 70%, 50%)
+      );
+      
+      /* Overwrite existing color variables to apply royal blue theme */
+      --bg-gradient-yellow-1: var(--bg-gradient-blue-1);
+      --bg-gradient-yellow-2: var(--bg-gradient-blue-2);
+      --text-gradient-yellow: var(--text-gradient-blue);
+      
 
-/* Title / Company / Date */
-.carousel-item h4 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: white;
-}
-.carousel-item .company {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: rgba(255,255,255,0.95);
-}
-.carousel-item .date {
-    font-size: 16px;
-    margin-bottom: 22px !important;
-    color: rgba(255,255,255,0.85);
-}
+      --border-gradient-onyx: linear-gradient(
+        to bottom right, 
+        hsl(0, 0%, 25%) 0%, 
+        hsla(0, 0%, 25%, 0) 50%
+      );
 
+      /* solid */
 
-/* === NAVIGATION BUTTONS === */
-.carousel-nav {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    color: black;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-.carousel-nav:hover:not(:disabled) {
-    background: black;
-    color: white;
-}
-.carousel-nav:disabled {
-    background: rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.4);
-    border: 1px solid rgba(255,255,255,0.05);
-    cursor: not-allowed;
-}
+      --jet: hsl(0, 0%, 22%);
+      --onyx: hsl(240, 1%, 17%);
+      --eerie-black-1: hsl(240, 2%, 13%);
+      --eerie-black-2: hsl(240, 2%, 12%);
+      --smoky-black: hsl(0, 0%, 7%);
+      --white-1: hsl(0, 0%, 100%);
+      --white-2: hsl(0, 0%, 98%);
+      
+      /* Overwrite existing color variables to apply royal blue theme */
+      --orange-yellow-crayola: var(--royal-blue);
+      --vegas-gold: var(--royal-blue);
+      
+      --light-gray: hsl(0, 0%, 84%);
+      --light-gray-70: hsla(0, 0%, 84%, 0.7);
+      --bittersweet-shimmer: hsl(0, 43%, 51%);
 
-/* === DOT INDICATORS === */
-.carousel-indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.35);
-    border: none;
-    transition: 0.3s;
-}
+      /**
+       * typography
+       */
 
-.carousel-indicator.active {
-    background: white;
-    transform: scale(1.25);
-}
+      --ff-poppins: 'Poppins', sans-serif;
 
-/* === MOBILE REFINEMENTS === */
-@media (max-width: 768px) {
-    .carousel-item {
-        min-width: calc(100% - 50px);
-        height: 150px;
-    }
-}
+      --fs-1: 24px;
+      --fs-2: 18px;
+      --fs-3: 17px;
+      --fs-4: 16px;
+      --fs-5: 15px;
+      --fs-6: 14px;
+      --fs-7: 13px;
+      --fs-8: 11px;
 
-@media (max-width: 768px) {
-    .carousel-item {
-        padding-right: 80px; /* was 110px */
+      --fw-300: 300;
+      --fw-400: 400;
+      --fw-500: 500;
+      --fw-600: 600;
+
+      /**
+       * shadow
+       */
+      
+      --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
+      --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
+      --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
+      --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
+      --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+
+      /**
+       * transition
+       */
+
+      --transition-1: 0.25s ease;
+      --transition-2: 0.5s ease-in-out;
+
     }
 
-    .carousel-item h4 {
-        font-size: 18px; /* smaller heading */
+    /* RESET */
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .carousel-item .company {
-        font-size: 16px;
+    a { text-decoration: none; }
+
+    li { list-style: none; }
+
+    img, ion-icon, a, button, time, span { display: block; }
+
+    button {
+      font: inherit;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
     }
 
-    .carousel-item .date {
-        font-size: 14px;
-        margin-bottom: 14px;
+    input, textarea {
+      display: block;
+      width: 100%;
+      background: none;
+      font: inherit;
     }
 
-    .carousel-item .work-logo {
-        width: 58px;
-        height: 58px;
-        right: 14px;
-    }
-}
-
-
-/* Next card peek space */
-.carousel-track {
-    padding-right: 32px;
-}
-
-/* Text layout inside card */
-.carousel-item h4,
-.carousel-item .company,
-.carousel-item .date {
-    margin: 0 0 4px 0;
-}
-
-/* Completely hide preview bullets ONLY in carousel cards */
-.carousel-item ul {
-    display: none !important;
-}
-
-
-    .modal-header-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
-}
-
-.modal-logo-left {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 12px;
-}
-
-.modal-header-text {
-    flex: 1;
-}
-
-.modal-role {
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0 0 4px 0;
-}
-
-.modal-company {
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 4px;
-}
-
-.modal-date {
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-
-    /* Premium Modal Layout */
-.modal-header-block {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.modal-logo {
-    width: 120px;
-    height: 120px;
-    border-radius: 18px;
-    display: block;
-    margin: auto;
-    object-fit: contain;
-}
-
-.modal-role {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-
-.modal-company {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    opacity: 0.9;
-}
-
-.modal-date {
-    font-size: 14px;
-    margin-bottom: 16px;
-    opacity: 0.85;
-}
-
-/* Bullet styling */
-.modal-bullets {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.modal-bullets li {
-    padding-left: 20px;
-    position: relative;
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-.modal-bullets li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    top: 4px;
-    font-size: 18px;
-    opacity: 0.9;
-}
-
-
-    /* --- Modal Content Improvements --- */
-.work-modal-box img {
-    max-width: 160px !important;
-    max-height: 160px !important;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 20px auto;
-    border-radius: 12px;
-}
-
-#workModalContent {
-    max-height: 65vh;
-    overflow-y: auto;
-    padding-right: 6px;
-}
-
-/* Better spacing inside modal */
-#workModalContent h4,
-#workModalContent .company,
-#workModalContent .date {
-    margin-bottom: 6px;
-}
-
-#workModalContent ul {
-    margin-top: 10px;
-}
-
-
-
-      /* --- Work Experience Modal --- */
-.work-modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 99999;
-}
-
-.work-modal.active {
-    display: flex;
-}
-
-.work-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(10px);
-}
-
-.work-modal-box {
-    position: relative;
-    max-width: 520px;
-    width: 90%;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 16px;
-    padding: 24px;
-    color: white;
-    box-shadow: 0 8px 26px rgba(0,0,0,0.4);
-    backdrop-filter: blur(16px);
-    animation: fadeInScale 0.25s ease-out;
-}
-
-.work-modal-close {
-    background: rgba(255,255,255,0.15);
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-bottom: 16px;
-}
-
-@keyframes fadeInScale {
-    0% { opacity: 0; transform: scale(0.92); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-        /* CSS Variables - Light Mode Default */
-        :root {
-            --color-white: rgba(255, 255, 255, 1);
-            --color-background: rgba(245, 247, 250, 1);
-            --color-surface: rgba(255, 255, 255, 0.18); /* glassy by default */
-            --color-text: rgba(19, 52, 59, 1);
-            --color-text-secondary: rgba(98, 108, 113, 0.8);
-            --color-primary: rgba(0, 0, 0, 1);
-            --color-primary-hover: rgb(128, 128, 128);
-            --color-border: rgba(94, 82, 64, 0.1);
-            --color-card-border: rgba(255, 255, 255, 0.08);
-            --font-family-base: "Montserrat", "FKGroteskNeue", "Inter", sans-serif;
-            --font-family-tagline: "Merriweather", serif;
-            --font-size-base: 14px;
-            --font-size-lg: 16px;
-            --font-size-xl: 18px;
-            --font-size-2xl: 20px;
-            --font-size-3xl: 26px;
-            --font-size-4xl: 38px;
-            --font-weight-medium: 500;
-            --font-weight-semibold: 600;
-            --font-weight-bold: 700;
-            --space-8: 8px;
-            --space-12: 12px;
-            --space-16: 16px;
-            --space-24: 24px;
-            --space-32: 32px;
-            --space-48: 48px;
-            --space-64: 64px;
-            --radius-base: 8px;
-            --radius-lg: 12px;
-            --radius-full: 9999px;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
-
-            /* parallax variable */
-            --bg-shift: 0px;
-        }
-
-        @font-face {
-            font-family: 'FKGroteskNeue';
-            src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-family: var(--font-family-base);
-            font-size: var(--font-size-base);
-            color: var(--color-text);
-            background-color: var(--color-background);
-            background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C9C9C' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M3 0h3v3H3z'/%3E%3Cpath d='M0 3h3v3H0z'/%3E%3C/g%3E%3C/svg%3E");
-            scroll-behavior: smooth;
-        }
-
-        /* === FULL-PAGE BLURRED PROFILE BACKGROUND (mobile-safe parallax) === */
-        /* Body pseudo element is fixed and spans full viewport. We'll offset its background-position using --bg-shift */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("https://i.ibb.co/r2srGXB4/Untitled-design-1.png");
-            background-size: cover;
-            background-position: center calc(50% + var(--bg-shift));
-            /* smoothing & look */
-            filter: blur(24px) brightness(0.75);
-            z-index: -2;
-            transform: scale(1.08); /* slightly scale so edges don't show when blurred */
-            transition: background-position 0.12s linear;
-            will-change: background-position;
-        }
-
-        /* dim overlay to improve contrast for text */
-        body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.50); /* stronger soft black veil */
-    backdrop-filter: blur(2px);      /* gives depth */
-    z-index: -1;
-    pointer-events: none;
-}
-
-
-        /* --- SWIPE-DOWN FIX: STRUCTURAL CSS --- */
-        body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* prevents sideways scroll but fixes bottom white line */
-    overflow-y: auto;   /* allow page to grow normally */
-}
-
-
-        body.header-open {
-            overflow-y: auto;
-        }
-
-        .header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            background-color: rgba(255, 255, 255, 0.12); /* glassy header */
-            color: var(--color-text);
-            padding: var(--space-64) var(--space-24) var(--space-48);
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 50;
-            overflow: hidden;
-            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            color: white;
-        }
-
-        body.header-open .header {
-            transform: translateY(-100vh);
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 10;
-            margin-top: 100vh;
-            transition: margin-top 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        body.header-open .content-wrapper {
-            margin-top: 0;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(50, 184, 198, 0.08) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        /* --- REDESIGNED HEADER CONTENT --- */
-        .header-content {
-            max-width: 768px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-            justify-content: center;
-            padding: 0 var(--space-12);
-        }
-
-        .profile-pic {
-            width: 100px;
-            height: 100px;
-            border-radius: 20%;
-            border: 3px solid rgba(255,255,255,0.9);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            object-fit: cover;
-            margin-bottom: var(--space-24);
-        }
-
-        .header h1 {
-            font-size: clamp(var(--font-size-3xl), 8vw, var(--font-size-4xl));
-            font-weight: var(--font-weight-bold);
-            margin-bottom: var(--space-12);
-            color: white;
-        }
-
-        .header .tagline {
-            font-size: clamp(var(--font-size-base), 4vw, var(--font-size-lg));
-            font-family: var(--font-family-tagline);
-            font-style: italic;
-            letter-spacing: 0.2px;
-            margin-bottom: var(--space-32);
-            width: 100%;
-            max-width: 600px;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-16);
-            margin-top: var(--space-12);
-            margin-bottom: var(--space-48);
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.08);
-            border-radius: var(--radius-base);
-            color: var(--color-white);
-            text-decoration: none;
-            font-weight: var(--font-weight-medium);
-            transition: all 0.25s ease;
-            font-size: var(--font-size-base);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .social-link:hover {
-            background: rgba(255,255,255,0.12);
-            color: var(--color-white);
-            transform: translateY(-2px);
-            border-color: rgba(255,255,255,0.12);
-        }
-
-        .social-link svg {
-            margin-right: var(--space-8);
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        /* --- END REDESIGNED HEADER CONTENT --- */
-
-
-        /* Hamburger Menu STYLES */
-        .nav-menu {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--color-white);
-            font-size: 24px;
-            padding: var(--space-16);
-            cursor: pointer;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .menu-icon {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--color-white);
-            position: relative;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .menu-icon::before,
-        .menu-icon::after {
-            content: '';
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--color-white);
-            position: absolute;
-            left: 0;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .menu-icon::before {
-            top: -8px;
-        }
-
-        .menu-icon::after {
-            top: 8px;
-        }
-
-        .menu-toggle.active .menu-icon {
-            background: transparent;
-        }
-
-        .menu-toggle.active .menu-icon::before {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .menu-toggle.active .menu-icon::after {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 220px;
-    height: 100%;
-    background: rgba(15, 15, 15, 0.95); /* still opaque */
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    box-shadow: 0 0 40px rgba(0,0,0,0.65); /* slight depth */
-    padding-top: 80px;
-    z-index: 1000;
-    overflow: hidden; /* IMPORTANT for masking the veil */
-}
-.nav-list::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.35);  /* soft black veil */
-    backdrop-filter: blur(18px);   /* translucent glassy blur */
-    z-index: -1;                   /* behind menu items */
-}
-
-
-
-        .nav-list.open {
-            transform: translateX(0);
-        }
-
-        .nav-list li a {
-    display: block;
-    padding: var(--space-16) var(--space-24);
-    text-decoration: none;
-    color: white;
-    font-size: var(--font-size-lg);
-    transition: background-color 0.2s;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    font-weight: 600;
-}
-    .nav-list li a:hover {
-    background-color: rgba(255,255,255,0.12);
-    color: white;
-}
-
-
-        /* Main Content Styling */
-        .container {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: var(--space-48) var(--space-24);
-            padding-top: 0;
-            color: white;
-        }
-
-        .section {
-            margin-bottom: var(--space-64);
-        }
-
-        .section-title {
-            font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-3xl));
-            font-weight: var(--font-weight-bold);
-            color: var(--color-white);
-            margin-bottom: var(--space-24);
-            position: relative;
-            padding-bottom: var(--space-12);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, rgba(255,255,255,0.95), transparent);
-            border-radius: var(--radius-full);
-        }
-
-        .card,
-        .experience-card,
-        .skill-category {
-            background-color: var(--color-surface);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--color-card-border);
-            padding: var(--space-24);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: var(--space-24);
-            color: white;
-            backdrop-filter: blur(8px);
-        }
-
-        .card p {
-            line-height: 1.8;
-            margin-bottom: var(--space-16);
-            color: rgba(255,255,255,0.9);
-        }
-
-        /* Customer Support List - No dot, only star */
-        .experience-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .experience-card li {
-            padding-left: var(--space-24);
-            margin-bottom: var(--space-12);
-            position: relative;
-            line-height: 1.7;
-            color: rgba(255,255,255,0.95);
-            display: block;
-        }
-
-        .experience-card li::before {
-            content: '★';
-            position: absolute;
-            left: 0;
-            color: var(--color-white);
-            font-size: 12px;
-            line-height: 1.7;
-            top: 0;
-        }
-
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-16);
-        }
-
-        .skill-category h3 {
-            color: var(--color-white);
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            margin-bottom: var(--space-16);
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding-left: var(--space-24);
-            margin-bottom: var(--space-8);
-            position: relative;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .skill-category li::before {
-            position: absolute;
-            left: 0;
-            color: var(--color-white);
-            font-weight: var(--font-weight-bold);
-            font-size: 1.1em;
-            top: 0;
-        }
-
-        /* Soft Skills: Checkmark */
-        #soft-skills li::before {
-            content: '✓';
-        }
-
-        /* Tech Skills: Chevron */
-        #tech-skills li::before {
-            content: '›';
-            font-weight: 900;
-            top: -1px;
-            font-size: 1.2em;
-        }
-
-        .cta-section {
-            background-color: rgba(255,255,255,0.16);
-            color: var(--color-white);
-            background-blend-mode: multiply;
-            border-radius: var(--radius-lg);
-            padding: var(--space-32) var(--space-24);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.06);
-            backdrop-filter: blur(8px);
-        }
-
-        .cta-section h2 {
-            font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-3xl));
-            font-weight: var(--font-weight-bold);
-            margin-bottom: var(--space-16);
-            color: var(--color-white);
-        }
-
-        .cta-section p {
-            font-size: var(--font-size-lg);
-            color: rgba(255,255,255,0.95);
-            margin-bottom: var(--space-32);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 32px;
-            border-radius: var(--radius-base);
-            font-weight: var(--font-weight-bold);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: 2px solid transparent;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background: transparent;
-            color: rgba(255,255,255,0.95);
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-        }
-
-
-        .btn-primary:hover {
-            background: var(--color-primary);
-            color: var(--color-white);
-            border-color: var(--color-white);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        .btn-primary::after {
-            content: '→';
-            position: absolute;
-            right: 15px;
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-        }
-
-        .btn-primary:hover::after {
-            transform: translateX(4px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: rgba(255,255,255,0.95);
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover,
-        .btn-secondary:focus {
-            background: rgba(255,255,255,0.08);
-            color: var(--color-white);
-            border: 1px solid rgba(255,255,255,0.18);
-        }
-
-        .footer {
-            background-color: rgba(255,255,255,0.08);
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: var(--space-32) var(--space-24);
-            text-align: center;
-            color: rgba(255,255,255,0.85);
-            backdrop-filter: blur(6px);
-        }
-
-      /* ---- Footer Social Icons ---- */
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-icons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-icons svg {
-            width: 20px;
-            height: 20px;
-            fill: rgba(255,255,255,0.85);
-            opacity: 0.9;
-            transition: 0.25s;
-        }
-
-        .footer-icons a:hover svg {
-            opacity: 1;
-        }
-
-        /* Make footer text not bold */
-        .footer p {
-            font-weight: 400 !important;
-}
-
-        .flex {
-            display: flex;
-        }
-
-        .justify-between {
-            justify-content: space-between;
-        }
-
-        .items-center {
-            align-items: center;
-        }
-
-        .mt-4 {
-            margin-top: var(--space-16);
-        }
-
-        .p-2 {
-            padding: var(--space-8);
-        }
-
-        .space-x-2>*+* {
-            margin-left: var(--space-8);
-        }
-
-
-        /* --- SWIPE-DOWN BUTTON STYLING (Flow-Based) --- */
-        .swipe-down-button {
-    position: static;
-    margin-top: var(--space-32);
-    margin-bottom: var(--space-32);
-    margin-left: auto;
-    margin-right: auto;
-
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 14px;
-
-    padding: 12px 28px;
-    cursor: pointer;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    transition: all 0.28s ease;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-}
-
-        .swipe-down-button:hover {
-    background: rgba(255, 255, 255, 0.22);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.55);
-    border-color: rgba(255,255,255,0.45);
-}
-
-
-        .swipe-down-button .arrows {
-    font-size: 18px;
-    animation: bounce 1.4s infinite ease;
-}
-
-
-        @keyframes bounce {
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(4px);
-            }
-
-            60% {
-                transform: translateY(2px);
-            }
-        }
-
-        /* --- BACK-TO-TOP FAB STYLES --- */
-        .back-to-top-fab {
-            position: fixed;
-            bottom: var(--space-32);
-            right: var(--space-24);
-            width: 56px;
-            height: 56px;
-            border-radius: var(--radius-full);
-            background-color: rgba(255,255,255,0.95);
-            color: var(--color-primary);
-            border: none;
-            box-shadow: var(--shadow-md);
-            font-size: 24px;
-            font-weight: var(--font-weight-bold);
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-            z-index: 100;
-        }
-
-        .back-to-top-fab.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top-fab:hover {
-            background-color: var(--color-primary-hover);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .header {
-                padding: var(--space-32) var(--space-16) var(--space-48);
-            }
-
-            .container {
-                padding: var(--space-32) var(--space-16);
-            }
-
-            /* Stack CTA buttons on mobile */
-            .cta-section div {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn-secondary {
-                margin-left: 0;
-                margin-top: var(--space-16);
-                width: 100%;
-                max-width: 250px;
-            }
-
-            .btn-primary {
-                width: 100%;
-                max-width: 250px;
-                padding-right: 42px;
-            }
-
-
-
-            .back-to-top-fab {
-                bottom: var(--space-24);
-                right: var(--space-16);
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-            }
-
-            .swipe-down-button {
-                margin-bottom: var(--space-32);
-                margin-top: var(--space-32);
-            }
-        }
-
-        /* Animation Keyframes */
-        @keyframes profilePopIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-
-            60% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .profile-pic.initial-load {
-            opacity: 0;
-            transform: scale(0.5);
-        }
-
-        .profile-pic.animate {
-            animation: profilePopIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-        }
-
-        @keyframes nameDescend {
-            0% {
-                transform: translateY(-30px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .header h1.initial-name-load {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        .header h1.animate-name {
-            animation: nameDescend 0.6s ease-out forwards;
-        }
-
-
-         #workModalContent::-webkit-scrollbar {
-    display: none;
-}
-
-#workModalContent {
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Remove bullet pointers from carousel completely */
-.carousel-item ul {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-.carousel-item ul li::before {
-    display: none !important;
-    content: "";
-}
-.carousel-item ul li {
-    padding-left: 0 !important;
-}
-
-/* === FIX: Remove white bottom line on mobile WITHOUT breaking background === */
-body::before,
-body::after {
-    position: fixed;
-    inset: 0;                      /* reliably fills viewport */
-    height: 100vh !important;
-    width: 100vw !important;
-    max-height: 100vh;
-}
-
-body::before {
-    background-position: center calc(50% + var(--bg-shift)) !important;
-    background-size: cover !important;
-}
-
-/* Prevent background scroll before "View Full Profile" */
-html,
-body {
-    overflow: hidden;
-    height: 100%;
-}
-
-/* Allow scroll ONLY after the header opens */
-body.header-open,
-html.header-open {
-    overflow-y: auto;
-    height: auto;
-}
-/* Prevent scroll when modal is open */
-/* Correct modal freeze (does NOT break scroll position on close) */
-body.modal-open,
-html.modal-open {
-    overflow: hidden !important;
-    position: fixed;
-    width: 100%;
-}
-
-/* ===========================
-   PREMIUM PROFILE MODAL (FINAL)
-   =========================== */
-
-.profile-modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-}
-
-.profile-modal.active {
-    display: flex;
-}
-
-.profile-modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(14px);
-    opacity: 0;
-    transition: opacity 0.45s ease;
-}
-
-.profile-modal.active .profile-modal-backdrop {
-    opacity: 1;
-}
-
-.profile-modal-box {
-    position: relative;
-    width: 90%;
-    max-width: 680px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 24px;
-    padding: 20px 40px 32px !important;
-    color: white;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.55);
-    backdrop-filter: blur(24px);
-
-    /* Smooth cinematic entrance */
-    transform: translateY(40px) scale(0.92);
-    opacity: 0;
-    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.profile-modal.active .profile-modal-box {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
-
-
-/* Close button */
-.profile-modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 24px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.28);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.25s;
-}
-
-.profile-modal-close:hover {
-    background: rgba(255,255,255,0.28);
-}
-
-
-/* CONTENT LAYOUT */
-.profile-modal-content {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-
-/* IMAGE */
-.profile-modal-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 18px;
-    object-fit: cover;
-
-    /* cinematic slide-in */
-    transform: translateX(-30px);
-    opacity: 0;
-    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.profile-modal.active .profile-modal-img {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-/* TEXT CONTENT */
-.profile-details {
-    flex: 1;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* --- Premium Left-Aligned Text for Profile Modal --- */
-.profile-modal-content {
-    text-align: left !important;
-}
-
-.profile-details {
-    width: 100%;
-    text-align: left !important;
-    font-family: "Montserrat", sans-serif;
-}
-
-.pm-name {
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    margin-bottom: 18px;
-    color: rgba(255,255,255,0.98);
-}
-
-.detail-row {
-    font-size: 17px;
-    margin-bottom: 10px;
-    opacity: 0.92;
-}
-
-.profile-modal.active .profile-details {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Name */
-.pm-name {
-    font-size: 30px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    margin-bottom: 20px;
-}
-
-
-/* Row styling */
-.detail-row {
-    margin-bottom: 12px;
-    font-size: 17px;
-    line-height: 1.55;
-}
-
-.detail-row strong {
-    color: rgba(255,255,255,0.98);
-    font-weight: 600;
-}
-
-
-/* MOBILE LAYOUT */
-@media (max-width: 640px) {
-
-    .profile-modal-box {
-        padding: 28px 24px;
+    ::selection {
+      background: var(--orange-yellow-crayola);
+      color: var(--smoky-black);
     }
 
-    .profile-modal-content {
+    :focus { outline-color: var(--orange-yellow-crayola); }
+
+    html { font-family: var(--ff-poppins); }
+
+    body { background: var(--smoky-black); }
+
+    /* REUSED STYLE */
+
+    .sidebar,
+    article {
+      background: var(--eerie-black-2);
+      border: 1px solid var(--jet);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: var(--shadow-1);
+      z-index: 1;
+    }
+
+    .separator {
+      width: 100%;
+      height: 1px;
+      background: var(--jet);
+      margin: 16px 0;
+    }
+
+    .icon-box {
+      position: relative;
+      background: var(--border-gradient-onyx);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      color: var(--orange-yellow-crayola);
+      box-shadow: var(--shadow-1);
+      z-index: 1;
+    }
+
+    .icon-box::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--eerie-black-1);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .icon-box ion-icon { --ionicon-stroke-width: 35px; }
+
+    article { display: none; }
+
+    article.active {
+      display: block;
+      animation: fade 0.5s ease backwards;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .h2,
+    .h3,
+    .h4,
+    .h5 {
+      color: var(--white-2);
+      text-transform: capitalize;
+    }
+
+    .h2 { font-size: var(--fs-1); }
+
+    .h3 { font-size: var(--fs-2); }
+
+    .h4 { font-size: var(--fs-4); }
+
+    .h5 {
+      font-size: var(--fs-7);
+      font-weight: var(--fw-500);
+    }
+
+    .article-title {
+      position: relative;
+      padding-bottom: 7px;
+    }
+
+    .article-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 3px;
+      background: var(--text-gradient-yellow);
+      border-radius: 3px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-track {
+      background: var(--onyx);
+      border-radius: 5px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-thumb {
+      background: var(--orange-yellow-crayola);
+      border-radius: 5px;
+    }
+
+    .has-scrollbar::-webkit-scrollbar-button { width: 20px; }
+
+    .content-card {
+      position: relative;
+      background: var(--border-gradient-onyx);
+      padding: 15px;
+      padding-top: 45px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-2);
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .content-card::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--bg-gradient-jet);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    /* MAIN */
+
+    main {
+      margin: 15px 12px;
+      margin-bottom: 75px;
+      min-width: 259px;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      margin-bottom: 15px;
+      max-height: 112px;
+      overflow: hidden;
+      transition: var(--transition-2);
+    }
+
+    .sidebar.active { max-height: 405px; }
+
+    .sidebar-info {
+      position: relative;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .avatar-box {
+      background: var(--bg-gradient-onyx);
+      border-radius: 20px;
+    }
+
+    .info-content .name {
+      color: var(--white-2);
+      font-size: var(--fs-3);
+      font-weight: var(--fw-500);
+      letter-spacing: -0.25px;
+      margin-bottom: 10px;
+    }
+
+    .info-content .title {
+      color: var(--white-1);
+      background: var(--onyx);
+      font-size: var(--fs-8);
+      font-weight: var(--fw-300);
+      width: max-content;
+      padding: 3px 12px;
+      border-radius: 8px;
+    }
+
+    .info_more-btn {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      border-radius: 0 15px;
+      font-size: 13px;
+      color: var(--orange-yellow-crayola);
+      background: var(--border-gradient-onyx);
+      padding: 10px;
+      box-shadow: var(--shadow-2);
+      transition: var(--transition-1);
+      z-index: 1;
+    }
+
+    .info_more-btn::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      background: var(--bg-gradient-jet);
+      transition: var(--transition-1);
+      z-index: -1;
+    }
+
+    .info_more-btn:hover,
+    .info_more-btn:focus { background: var(--bg-gradient-yellow-1); }
+
+    .info_more-btn:hover::before,
+    .info_more-btn:focus::before { background: var(--bg-gradient-yellow-2); }
+
+    .info_more-btn span { display: none; }
+
+    .sidebar-info_more {
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-2);
+    }
+
+    .sidebar.active .sidebar-info_more {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .contacts-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .contact-item {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-info {
+      max-width: calc(100% - 46px);
+      width: calc(100% - 46px);
+    }
+
+    .contact-title {
+      color: var(--light-gray-70);
+      font-size: var(--fs-8);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .contact-info :is(.contact-link, time, address) {
+      color: var(--white-2);
+      font-size: var(--fs-7);
+    }
+
+    .contact-info address { font-style: normal; }
+
+    .social-list {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px;
+      padding-bottom: 4px;
+      padding-left: 7px;
+    }
+
+    .social-item .social-link {
+      color: var(--light-gray-70);
+      font-size: 18px;
+    }
+
+    .social-item .social-link:hover { color: var(--light-gray); }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: hsla(240, 1%, 17%, 0.75);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--jet);
+      border-radius: 12px 12px 0 0;
+      box-shadow: var(--shadow-2);
+      z-index: 5;
+    }
+
+    .navbar-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    .navbar-link {
+      color: var(--light-gray);
+      font-size: var(--fs-8);
+      padding: 20px 7px;
+      transition: color var(--transition-1);
+    }
+
+    .navbar-link:hover,
+    .navbar-link:focus { color: var(--light-gray-70); }
+
+    .navbar-link.active { color: var(--orange-yellow-crayola); }
+
+    /* ABOUT */
+
+    .about .article-title { margin-bottom: 15px; }
+
+    .about-text {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+    }
+
+    .about-text p { margin-bottom: 15px; }
+
+    .service { margin-bottom: 35px; }
+
+    .service-title { margin-bottom: 20px; }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .service-item {
+      position: relative;
+      background: var(--border-gradient-onyx);
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-2);
+      z-index: 1;
+    }
+
+    .service-item::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--bg-gradient-jet);
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .service-icon-box { margin-bottom: 10px; }
+
+    .service-icon-box img { margin: auto; }
+
+    .service-content-box { text-align: center; }
+
+    .service-item-title { margin-bottom: 7px; }
+
+    .service-item-text {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      line-height: 1.6;
+    }
+
+    /* testimonials */
+
+    .testimonials { margin-bottom: 30px; }
+
+    .testimonials-title { margin-bottom: 20px; }
+
+    .testimonials-list {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 15px;
+      margin: 0 -15px;
+      padding: 25px 15px;
+      padding-bottom: 35px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      -webkit-overflow-scrolling: touch; /* smoother touch scrolling */
+    }
+
+    .testimonials-item {
+      min-width: 100%;
+      scroll-snap-align: center;
+    }
+
+    .testimonials-avatar-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(15px, -25px);
+      background: var(--bg-gradient-onyx);
+      border-radius: 14px;
+      box-shadow: var(--shadow-1);
+    }
+
+    .testimonials-item-title { margin-bottom: 7px; }
+
+    .testimonials-text {
+      color: var(--light-gray);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* testimonials modal */
+
+    .modal-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      z-index: 20;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .modal-container::-webkit-scrollbar { display: none; }
+
+    .modal-container.active {
+      pointer-events: all;
+      visibility: visible;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: hsl(0, 0%, 5%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 1;
+      transition: var(--transition-1);
+    }
+
+    .overlay.active {
+      opacity: 0.8;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    .testimonials-modal {
+      background: var(--eerie-black-2);
+      position: relative;
+      padding: 15px;
+      margin: 15px 12px;
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      box-shadow: var(--shadow-5);
+      transform: scale(1.2);
+      opacity: 0;
+      transition: var(--transition-1);
+      z-index: 2;
+    }
+
+    .modal-container.active .testimonials-modal {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--onyx);
+      border-radius: 8px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white-2);
+      font-size: 18px;
+      opacity: 0.7;
+    }
+
+    .modal-close-btn:hover,
+    .modal-close-btn:focus { opacity: 1; }
+
+    .modal-close-btn ion-icon { --ionicon-stroke-width: 50px; }
+
+    /* Modal Clean Layout Styles */
+    .modal-header-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--jet);
+    }
+    
+    .modal-info {
+        display: flex;
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
+    }
+    
+    .modal-avatar-box {
+      background: var(--bg-gradient-onyx);
+      width: max-content;
+      border-radius: 14px;
+      margin-bottom: 0; /* Override default margin */
+      box-shadow: var(--shadow-2);
+    }
+    
+    .modal-info time {
+      font-size: var(--fs-7);
+      color: var(--light-gray);
+      font-weight: var(--fw-400);
+    }
+    
+    .modal-content-text {
+      line-height: 1.6;
+      color: var(--light-gray);
+    }
+    
+    .modal-content-text p:not(:last-child) {
+        margin-bottom: 10px;
+    }
+    
+    /* Hide old unused classes */
+    .modal-img-wrapper, .modal-content { 
+      display: none; 
     }
 
-    .profile-modal-img {
-        width: 140px;
-        height: 140px;
-        transform: translateY(-20px);
+    /* RESUME */
+
+    .article-title { margin-bottom: 30px; }
+
+    .timeline { margin-bottom: 30px; }
+
+    .timeline .title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
-    .detail-row {
-        font-size: 14px;
+    .timeline-list {
+      font-size: var(--fs-6);
+      margin-left: 45px;
     }
 
-    .pm-name {
-        font-size: 26px;
-        margin-bottom: 14px;
-        text-align: center;
-        width: 100%;
-    }
-}
+    .timeline-item { position: relative; }
 
-/* --- Profile Modal Social Icons --- */
-.profile-modal-icons {
-    margin-top: 22px;
-    display: flex;
-    gap: 18px;
-    align-items: center;
-}
+    .timeline-item:not(:last-child) { margin-bottom: 20px; }
 
-.pm-icon {
-    display: inline-flex;
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.18);
-    backdrop-filter: blur(12px);
-    transition: 0.25s ease;
-}
-
-.pm-icon:hover {
-    background: rgba(255,255,255,0.18);
-    transform: translateY(-2px);
-}
-
-.pm-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: white;
-    opacity: 0.92;
-}
-
-/* Force icons to be pure white — remove any unintended tint */
-.pm-icon svg path {
-    fill: #ffffff !important;
-    opacity: 1 !important;
-}
-
-/* Disable header snap while closing modals */
-html.modal-fixing-scroll,
-body.modal-fixing-scroll {
-    scroll-behavior: auto !important;
-}
-
-/* Fix: Smaller carousel text on mobile */
-@media (max-width: 480px) {
-    .carousel-item h4 {
-        font-size: 16px !important;
-    }
-    .carousel-item .company {
-        font-size: 14px !important;
-    }
-    .carousel-item .date {
-        font-size: 13px !important;
-    }
-}
-
-/* Fix: Smaller footer text + icons on mobile */
-@media (max-width: 480px) {
-    .footer {
-        padding: 12px !important;
+    .timeline-item-title {
+      font-size: var(--fs-6);
+      line-height: 1.3;
+      margin-bottom: 7px;
     }
 
-    .footer-icons svg {
-        width: 12px !important;
-        height: 12px !important;
+    .timeline-list span {
+      color: var(--vegas-gold);
+      font-weight: var(--fw-400);
+      line-height: 1.6;
     }
 
-    .footer p {
-        font-size: 12px !important;
+    .timeline-item:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      top: -25px;
+      left: -30px;
+      width: 1px;
+      height: calc(100% + 50px);
+      background: var(--jet);
     }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: -33px;
+      height: 6px;
+      width: 6px;
+      background: var(--text-gradient-yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--jet);
+    }
+
+    .timeline-text {
+      color: var(--light-gray);
+      font-weight: var(--fw-300);
+      line-height: 1.6;
+    }
+
+    .skills-title { margin-bottom: 20px; }
+
+    .skills-list { padding: 20px; }
+
+    .skills-item:not(:last-child) { margin-bottom: 15px; }
+
+    .skill .title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .skill .title-wrapper data {
+      color: var(--light-gray);
+      font-size: var(--fs-7);
+      font-weight: var(--fw-300);
+    }
+
+    .skill-progress-bg {
+      background: var(--jet);
+      width: 100%;
+      height: 8px;
+      border-radius: 10px;
+    }
+
+    .skill-progress-fill {
+      background: var(--text-gradient-yellow);
+      height: 100%;
+      border-radius: inherit;
+    }
+
+    /* CONTACT */
+
+    .contact-form { margin-bottom: 10px; }
+
+    .form-title { margin-bottom: 20px; }
+
+    .input-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .form-input {
+      color: var(--white-2);
+      font-size: var(--fs-6);
+      font-weight: var(--fw-400);
+      padding: 13px 20px;
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      outline: none;
+    }
+
+    .form-input::placeholder { font-weight: var(--fw-500); }
+
+    .form-input:focus { border-color: var(--orange-yellow-crayola); }
+
+    textarea.form-input {
+      min-height: 100px;
+      height: 120px;
+      max-height: 200px;
+      resize: vertical;
+      margin-bottom: 25px;
+    }
+
+    textarea.form-input::-webkit-resizer { display: none; }
+
+    .form-input:focus:invalid { border-color: var(--bittersweet-shimmer); }
+
+    .form-btn {
+      position: relative;
+      width: 100%;
+      background: var(--border-gradient-onyx);
+      color: var(--orange-yellow-crayola);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-size: var(--fs-6);
+      text-transform: capitalize;
+      box-shadow: var(--shadow-3);
+      z-index: 1;
+      transition: var(--transition-1);
+    }
+
+    .form-btn::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background: var(--bg-gradient-jet);
+      border-radius: inherit;
+      z-index: -1;
+      transition: var(--transition-1);
+    }
+
+    .form-btn ion-icon { font-size: 16px; }
+
+    .form-btn:hover { background: var(--bg-gradient-yellow-1); }
+
+    .form-btn:hover::before { background: var(--bg-gradient-yellow-2); }
+
+    .form-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .form-btn:disabled:hover { background: var(--border-gradient-onyx); }
+
+    .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
+
+    /* RESPONSIVE */
+
+    @media (min-width: 450px) {
+
+      .clients-item { min-width: calc(33.33% - 10px); }
+
+      .project-img,
+      .blog-banner-box { height: auto; }
+
+    }
+    
+    /* === UNIFORM LOGO SIZE FOR WORK EXPERIENCE CARDS (ALL DEVICES) === */
+      .testimonials-avatar-box img {
+        width: 70px !important;
+        height: 70px !important;
+        object-fit: contain;
+        padding: 6px; /* optional but looks neat */
+    }
+
+
+    @media (min-width: 580px) {
+
+      :root {
+        --fs-1: 32px;
+        --fs-2: 24px;
+        --fs-3: 26px;
+        --fs-4: 18px;
+        --fs-6: 15px;
+        --fs-7: 15px;
+        --fs-8: 12px;
+      }
+
+      .sidebar, article {
+        width: 520px;
+        margin-inline: auto;
+        padding: 30px;
+      }
+
+      .article-title {
+        font-weight: var(--fw-600);
+        padding-bottom: 15px;
+      }
+
+      .article-title::after {
+        width: 40px;
+        height: 5px;
+      }
+
+      .icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        font-size: 18px;
+      }
+
+      main {
+        margin-top: 60px;
+        margin-bottom: 100px;
+      }
+
+      .sidebar {
+        max-height: 180px;
+        margin-bottom: 30px;
+      }
+
+      .sidebar.active { max-height: 584px; }
+
+      .sidebar-info { gap: 25px; }
+
+      .avatar-box { border-radius: 30px; }
+
+      .avatar-box img { width: 120px; }
+
+      .info-content .name { margin-bottom: 15px; }
+
+      .info-content .title { padding: 5px 18px; }
+
+      .info_more-btn {
+        top: -30px;
+        right: -30px;
+        padding: 10px 15px;
+      }
+
+      .info_more-btn span {
+        display: block;
+        font-size: var(--fs-8);
+      }
+
+      .info_more-btn ion-icon { display: none; }
+
+      .separator { margin: 32px 0; }
+
+      .contacts-list { gap: 20px; }
+
+      .contact-info {
+        max-width: calc(100% - 64px);
+        width: calc(100% - 64px);
+      }
+
+      .navbar { border-radius: 20px 20px 0 0; }
+
+      .navbar-list { gap: 20px; }
+
+      .navbar-link { --fs-8: 14px; }
+
+      .about .article-title { margin-bottom: 20px; }
+
+      .about-text { margin-bottom: 40px; }
+
+      .service-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 30px;
+      }
+
+      .service-icon-box {
+        margin-bottom: 0;
+        margin-top: 5px;
+      }
+
+      .service-content-box { text-align: left; }
+
+      .testimonials-title { margin-bottom: 25px; }
+
+      .testimonials-list {
+        gap: 30px;
+        margin: 0 -30px;
+        padding: 30px;
+        padding-bottom: 35px;
+      }
+
+      .content-card {
+        padding: 30px;
+        padding-top: 25px;
+      }
+
+      .testimonials-avatar-box {
+        transform: translate(30px, -30px);
+        border-radius: 20px;
+      }
+
+      .testimonials-avatar-box img { width: 80px; }
+
+      .testimonials-item-title { 
+        margin-bottom: 5px; /* Reduced gap below title */
+        margin-left: 95px;
+      }
+
+      /* Styling for the new designation element in the preview card */
+      [data-testimonials-designation] {
+        margin-left: 95px;
+        display: block;
+        font-size: var(--fs-7);
+        color: var(--light-gray);
+        font-weight: var(--fw-400);
+        margin-bottom: 5px; /* Space between designation and date */
+      }
+      
+      /* Styling for the date (now below designation) in the preview card */
+      [data-testimonials-date] {
+        margin-left: 95px;
+        display: block;
+        font-size: var(--fs-8);
+        color: var(--light-gray-70);
+        margin-bottom: 10px;
+      }
+
+      .testimonials-text {
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+      }
+
+      .modal-container { padding: 20px; }
+
+      .testimonials-modal {
+        display: block; /* Overriding to make sure the new header is clean */
+        max-width: 680px; 
+        padding: 30px;
+      }
+      
+      .modal-avatar-box {
+          margin-bottom: 0;
+      }
+      
+      .modal-title {
+          margin-bottom: 4px;
+      }
+
+      /* Modal Info block update for designation and date */
+      .modal-info .h5 { /* Targeting the new designation which uses class h5 */
+        font-size: var(--fs-7);
+        color: var(--light-gray);
+        font-weight: var(--fw-500);
+        margin-bottom: 2px;
+      }
+      
+      .modal-info time {
+        font-size: var(--fs-8); /* Smaller date */
+        color: var(--light-gray-70);
+        font-weight: var(--fw-400);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .sidebar, article { width: 700px; }
+      .has-scrollbar::-webkit-scrollbar-button { width: 100px; }
+      .contacts-list { grid-template-columns: 1fr 1fr; gap: 30px 15px; }
+      .navbar-link { --fs-8: 15px; }
+      .testimonials-modal { gap: 35px; max-width: 680px; }
+      .modal-avatar-box img { width: 80px; }
+      .article-title { padding-bottom: 20px; }
+    }
+    
+    @media (min-width: 1250px) { 
+      body::-webkit-scrollbar { width: 20px; }
+      body::-webkit-scrollbar-track { background: var(--smoky-black); }
+      body::-webkit-scrollbar-thumb { border: 5px solid var(--smoky-black); background: hsla(0, 0%, 100%, 0.1); border-radius: 20px; box-shadow: inset 1px 1px 0 hsla(0, 0%, 100%, 0.11), inset -1px -1px 0 hsla(0, 0%, 100%, 0.11); }
+      body::-webkit-scrollbar-thumb:hover { background: hsla(0, 0%, 100%, 0.15); }
+      body::-webkit-scrollbar-button { height: 60px; }
+      .sidebar, article { width: auto; }
+      article { min-height: 100%; }
+      main { max-width: 1200px; margin-inline: auto; display: flex; justify-content: center; align-items: stretch; gap: 25px; }
+      .main-content { min-width: 75%; width: 75%; margin: 0; }
+      .sidebar { position: sticky; top: 60px; max-height: max-content; height: 100%; margin-bottom: 0; padding-top: 60px; z-index: 1; }
+      .sidebar-info { flex-direction: column; }
+      .avatar-box img { width: 150px; }
+      .info-content .name { white-space: nowrap; text-align: center; }
+      .info-content .title { margin: auto; }
+      .info_more-btn { display: none; }
+      .sidebar-info_more { opacity: 1; visibility: visible; }
+      .contacts-list { grid-template-columns: 1fr; }
+      .contact-info :is(.contact-link) { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .contact-info :is(.contact-link, time, address) { --fs-7: 14px; font-weight: var(--fw-300); }
+      .separator:last-of-type { margin: 15px 0; opacity: 0; }
+      .social-list { justify-content: center; }
+      .timeline-text { max-width: 700px; }
+    }
+
+    /* === MOBILE FIX FOR WORK EXPERIENCE CARDS (Option A: full text) === */
+    @media (max-width: 579px) {
+      .testimonials-list {
+        margin: 0;
+        padding: 20px 12px 30px;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+      }
+
+      .testimonials-item {
+        min-width: calc(100% - 24px);
+        scroll-snap-align: start;
+      }
+
+      .content-card {
+        padding: 20px;
+        padding-top: 60px; /* more room for avatar */
+      }
+
+/* ===== FINAL POLISH FOR MOBILE WORK EXPERIENCE CARDS ===== */
+@media (max-width: 579px) {
+
+  /* Fix logo and remove unnecessary bottom space */
+  .content-card {
+    padding-top: 40px !important;   /* was 50px */
+    min-height: 260px !important;   /* NEW — equal card height */
+  }
+
+  /* Move text left slightly and reduce empty area */
+  .testimonials-item-title,
+  [data-testimonials-designation],
+  [data-testimonials-date] {
+    margin-left: 70px !important; /* was 75/68px */
+  }
+
+  /* Make date smaller & more elegant */
+  [data-testimonials-date] {
+    font-size: 12px !important;       /* smaller */
+    color: var(--light-gray-70) !important;
+    font-weight: 400 !important;      /* subtle */
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Same date style inside modal */
+  .modal-info time {
+    font-size: 13px !important;
+    color: var(--light-gray-70) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Avatar alignment (final tuned) */
+  .testimonials-avatar-box {
+    transform: translate(15px, -5px) !important;
+  }
+
+  .testimonials-avatar-box img {
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: contain;
+  }
 }
 
-    /* Pill styling for role inside Profile Modal */
-.role-pill-wrapper {
-    text-align: center !important;
-    margin-top: -4px;   /* small visual balance */
-    margin-bottom: 12px;
-}
 
-
-.role-pill {
-    display: inline-block;
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 999px;   /* pill shape */
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    color: white;
-    backdrop-filter: blur(12px);
-}
-
-    .role-pill:hover {
-    box-shadow: 0 0 12px rgba(255,255,255,0.6);
-    transform: translateY(-2px);
-    transition: 0.25s ease;
-}
-
-/* Center only the name + pill inside details block */
-.profile-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centers children horizontally */
-}
-
-/* Keep other rows left aligned */
-.detail-row {
-    width: 100%;
-    text-align: left;
-}
-
-
-/* Centered name + pill header */
-.profile-modal-header-center {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.profile-modal-header-center .pm-name {
-    margin-bottom: 8px;
-}
-
-.profile-modal-header-center .role-pill {
-    display: inline-block;
-    margin: 0 auto;
-}
-
-/* Remove unwanted centering from details (it was causing misalignment) */
-.profile-details {
-    align-items: flex-start !important;
-}
-
-/* Make the centered header visually clean */
-.role-pill {
-    padding: 6px 14px;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.28);
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    display: inline-block;
-    backdrop-filter: blur(12px);
-    transition: 0.25s ease;
-}
-
-.role-pill:hover {
-    box-shadow: 0 0 12px rgba(255,255,255,0.6);
-    transform: translateY(-2px);
-}
-
-
-    </style>
+  </style>
 </head>
 
 <body>
-    <header class="header" id="fullScreenHeader">
-        <div class="nav-menu">
-            <button class="menu-toggle" aria-label="Toggle navigation menu" id="menuToggle">
-                <span class="menu-icon"></span>
-            </button>
-            <ul class="nav-list" id="navList">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#customer-support-experience">Impact & Contributions</a></li>
-                <li><a href="#work-experience">Work Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+  <main>
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="https://i.ibb.co/35KWZVqf/Untitled-design-6.png" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Faraz Ahmed">Faraz Ahmed</h1>
+
+          <p class="title">Senior Associate - CX</p>
         </div>
-        <div class="header-content">
-            <img src="https://i.ibb.co/r2srGXB4/Untitled-design-1.png" alt="Faraz Ahmed" class="profile-pic initial-load"
-                id="profilePic" />
-            <h1 id="userName" class="initial-name-load">Faraz Ahmed</h1>
 
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/faraz-ahmed-43b3a3200/" target="_blank"
-                    rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile">
-                    <svg viewBox="0 0 24 24">
-<path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.18h4.55V24H.22V8.18zM8.09 8.18h4.36v2.15h.06c.61-1.15 2.11-2.36 4.34-2.36C22.26 7.97 24 10.2 24 14.3V24h-4.55v-9.12c0-2.18-.04-4.98-3.04-4.98-3.04 0-3.51 2.37-3.51 4.82V24H8.09V8.18z"/>
-</svg>
-                    LinkedIn
-                </a>
-                <a href="mailto:faraz30648@gmail.com" class="social-link" aria-label="Email Faraz Ahmed">
-                    <svg viewBox="0 0 24 24">
-<path fill="currentColor" d="M12 13.065L1.5 6V18c0 1.1.9 2 2 2h17c1.1 0 2-.9 2-2V6l-10.5 7.065zM12 11L1.5 4h21L12 11z"/>
-</svg>
-                    Email
-                </a>
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Personal Info</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
 
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
             </div>
 
-            <p class="tagline">
-                Dedicated customer service professional with <strong>7+ years of expertise</strong>, eager to bring my versatile skills
-                and commitment to a collaborative team environment where I can make a positive impact. 
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:faraz30648@gmail.com" class="contact-link">faraz30648@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+919663916454" class="contact-link">+91 96639 16454</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1998-09-02">December 16, 1994</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Bangalore, India</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://www.linkedin.com/in/faraz-ahmed-43b3a3200/" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://github.com/faraz30648" class="social-link">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+          
+          <li class="social-item">
+            <a href="https://www.instagram.com/somwonunou/?hl=en" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+           </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+    <div class="main-content">
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+      <article class="about active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            Dedicated customer service professional with 7+ years of expertise, eager to bring my versatile skills and commitment to a collaborative team environment where I can make a positive impact.
+          </p>
+        </section>
+
+
+        <section class="service">
+
+          <h3 class="h3 service-title">Technical Skills</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="https://i.ibb.co/5XKKMtGf/Microsoft-Office-Logo-wine.png" alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">MS Office</h4>
+                <p class="service-item-text">
+                  Expert knowlede of MS Tools
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="https://i.ibb.co/TMzNk3JR/toppng-com-google-flat-letter-g-vector-1125x1125.png" alt="Web development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Google Apps</h4>
+                <p class="service-item-text">
+                  Expert knowledge of Google Apps (Sheets, Docs, Sites)
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="https://i.ibb.co/wF7zmLcM/vscode-alt.png" alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Basic Web Designing</h4>
+                <p class="service-item-text">
+                  Learning to build websites using HTML, CSS, & Java
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="https://i.ibb.co/TBDrSDLF/icons8-coreldraw-logo-240.png" alt="camera icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Photo editing & Graphic Designing</h4>
+                <p class="service-item-text">
+                  I make high-quality photos of any category at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <section class="testimonials">
+
+          <h3 class="h3 testimonials-title">Work Experience</h3>
+
+          <ul class="testimonials-list has-scrollbar">
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="https://i.ibb.co/99XFKSFT/2025-11-30-T023136-157.jpg" alt="smallcase" width="120" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>smallcase</h4>
+                <p class="h5" data-testimonials-designation>Senior Associate - CX</p> <span data-testimonials-date>April 2025 — present</span>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p> ○ Leading operations to enhance customer service efficiency.</p>
+                  <p> ○ Coordinating between teams to ensure smooth processes and high-quality deliverables.</p>
+                  <p>○ Handling B2B Gateway solutions.</p>
+                  <p>○ Driving initiatives for superior client satisfaction.</p>
+                  
+                </div>
+
+              </div>
+            </li>
+            
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="https://i.ibb.co/6cRW7hDy/logo-1.png" alt="Intouch CX" width="120" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Intouch CX</h4>
+                <p class="h5" data-testimonials-designation>Sr Consultant - Customer Support</p> <span data-testimonials-date>2022 - 2025</span>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p> ○ Resolve player concerns via email and Discord across multiple
+platforms, ensuring timely solutions.</p>
+                  <p>○ Investigate issues, escalating complex cases as needed.</p>
+                  <p>○ Deliver personalized support, driving positive player
+experiences.</p>
+                  <p>○ Supervised a support team, ensuring adherence to SLAs and
+performance standards.</p>
+                  <p>○ Collaborated with internal teams for seamless issue
+resolution.</p>
+                   
+                  <p>○ Consistently achieved high CSAT scores with a player-focused
+approach.</p>            
+                </div>
+              </div>
+            </li>
+
+            
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="https://i.ibb.co/27Hn0QS5/images-12.png" alt="Wakefit" width="120" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Wakefit</h4>
+                <p class="h5" data-testimonials-designation>Team Supervisor</p> <span data-testimonials-date>2020 - 2022</span>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p> ○ Skillfully handled both inbound and outbound calls, emails, and chats.</p>
+                  <p>○ Supervised a team specializing in outbound calls.</p>
+                  <p>○ Handled over 50+ Inbound/outbound interactions per week
+based on KRA/requirement.</p>
+                  <p>○ Oversaw multiple team reports, conducting analysis to drive
+improvements.</p>
+                  <p>○ Monitored daily reviews on platforms such as Amazon and
+Flipkart, providing insightful analysis and suggestions for
+enhancing reviews.</p>
+                   
+                  <p>○ Managed a team dedicated to converting negative reviews
+into positive ones by providing effective solutions and
+assistance</p>            
+                </div>
+              </div>
+            </li>
+
+            
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="https://i.ibb.co/ks2hTBms/images-2025-11-30-T021944-260.jpg" alt="Udaan" width="120" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Udaan</h4>
+                <p class="h5" data-testimonials-designation>Senior Executive - CX</p> <span data-testimonials-date>2019 - 2020</span>
+
+                <div class="testimonials-text" data-testimonials-text>
+                  <p> ○ Managed both inbound and outbound calls, emails, and chats
+proficiently.</p>
+                  <p>○ Developed and maintained a comprehensive knowledge base
+that improved the training and performance of 200+ agents.</p>
+                  <p>○ Supervised a team responsible for handling outbound calls
+effectively.</p>
+                  <p>○ Handled over 100+ Inbound/outbound interactions per day
+based on requirement. </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="testimonials-item">
+              <div class="content-card" data-testimonials-item>
+
+                <figure class="testimonials-avatar-box">
+                  <img src="https://i.ibb.co/Ld3Z6004/images-13.png" alt="Ajio" width="120" data-testimonials-avatar>
+                </figure>
+
+                <h4 class="h4 testimonials-item-title" data-testimonials-title>Aegis Ltd. (Ajio)</h4>
+                <p class="h5" data-testimonials-designation>Escalation & Social Media Specialist</p> <span data-testimonials-date>2016 - 2018</span>
+                
+                <div class="testimonials-text" data-testimonials-text>
+                  <p> ○ Transitioned from agent to Escalation and Social Media team.</p>
+                  <p>○ Responsible for managing inbound/outbound calls, emails,
+chats, social media responses, and escalations.</p>
+                  <p>○ Handled over 100+ Inbound/outbound interactions per day. </p>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+
+        <div class="modal-container" data-modal-container>
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-header-info">
+              <figure class="modal-avatar-box">
+                <img src="" alt="Client Logo" width="80" data-modal-img>
+              </figure>
+              <div class="modal-info">
+                <h4 class="h3 modal-title" data-modal-title></h4>
+                <p class="h5" data-modal-designation></p> <time datetime="2021-06-14" data-modal-date></time>
+              </div>
+            </div>
+
+            <div class="modal-content-text" data-modal-text>
+              <p> </p>
+            </div>
+
+          </section>
+        </div>
+
+
+        </article>
+
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Baldwin's Methodist College</h4>
+
+              <span>2013 - 2016</span>
+
+              <p class="timeline-text">
+                Bachelor of Business Administration.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Seventh Day Adventist Pre University College</h4>
+
+              <span>2011 — 2013</span>
+
+              <p class="timeline-text">
+                Commerce (CEBA)
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Seventh Day Adventist High School</h4>
+
+              <span>2011</span>
+
+              <p class="timeline-text">
+                School
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">smallcase</h4>
+
+              <span>2025 - Present</span>
+
+              <p class="timeline-text">
+                Senior Associate CX - Handling B2B Gateway solutions along with B2C queries.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Intouch CX</h4>
+
+              <span>2022 — 2025</span>
+
+              <p class="timeline-text">
+                Senior Consultant - Customer Support
+                Projects - 
+                Niantic :
+Pokémon GO
+Monster Hunter Now
+• Social Point
+Monster Legends
+Top Troops
+Dragon City
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Wakefit</h4>
+
+              <span>2020 — 2022</span>
+
+              <p class="timeline-text">
+                Team Supervisor - Customer Support
+              </p>
+
+            </li>
+            
+                        <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Udaan</h4>
+
+              <span>2019 — 2020</span>
+
+              <p class="timeline-text">
+                Senior Associate - Built agent tool ("Promise Engine") for
+efficient issue resolution.
+Spearheaded knowledgebase
+creation, adopted by multiple teams.
+              </p>
+
+            </li>
+            
+                        <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Aegis Ltd. (Ajio.com)</h4>
+
+              <span>2016 — 2018</span>
+
+              <p class="timeline-text">
+                Senior Operations Executive
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Customer Journey Mapping</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Voice of Customer (VoC) Analysis</h5>
+                <data value="80">80%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">CX Strategy & Planning</h5>
+                <data value="75">75%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 75%;"></div>
+              </div>
+
+            </li>
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Stakeholder Communication</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Process Improvement & Service Design</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+            
+                        <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Data-Driven Decision Making</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-embed-container" style="height: 80vh; min-height: 500px; padding: 0;">
+          <iframe src="https://evolvingperspectivedotblog.wordpress.com/" 
+                  style="width: 100%; height: 100%; border: 1px solid var(--jet); border-radius: 14px; box-shadow: var(--shadow-2); background: var(--eerie-black-1);" 
+                  title="My WordPress Blog">
+            <p style="color: var(--light-gray); text-align: center; padding: 20px;">
+              Your browser does not support iframes. Please visit my blog directly at: 
+              <a href="https://evolvingperspectivedotblog.wordpress.com/" target="_blank" style="color: var(--royal-blue);">Evolving Perspective</a>
             </p>
+          </iframe>
+        </section>
 
-            <button class="swipe-down-button" id="swipeDownBtn" aria-label="Swipe down to view full profile">
-                View Full Profile
-                <span class="arrows">
-                    »
-                </span>
-            </button>
-        </div>
+      </article>
 
-    </header>
 
-    <div class="content-wrapper" id="contentWrapper">
-        <main class="container">
-            <section id="about" class="section">
-                <h2 class="section-title">About Me</h2>
-                <div class="card">
-                    <p>Customer service professional with <strong>7+ years of experience</strong> in managing inbound
-                        and outbound communications across multiple channels.</p>
-                    <p>Known for skillfully <strong>handling escalations, building effective knowledge bases, and driving team success</strong></p>
-                    <p>Passionate about improving customer experiences and driving business metrics through collaborative stakeholder 
-                        engagement.</p>
-                    <p>Specialized in streamlining support ticket processes, resolving pain 
-                        points, and implementing strategic solutions. Proficient in developing SOPs and 
-                        workflows to minimize workload and prioritize better customer experiences</p>
-                    <p>Proficient in <strong>MS Office Suite and Google applications</strong>, with a strong focus on delivering results and enhancing customer satisfaction.</p>
-                </div>
-            </section>
+      <article class="contact" data-page="contact">
 
-            <section id="customer-support-experience" class="section">
-                <h2 class="section-title">Impact & Contributions</h2>
-                <div class="experience-card">
-                    <ul>
-<li>Managed high-volume multi-channel support (calls, email, chat, Discord) while maintaining strong CSAT and SLA adherence.</li>
-<li>Led cross-functional collaboration between partners, product, and engineering teams to resolve technical escalations efficiently.</li>
-<li>Partnered with Product Managers to convert customer feedback into roadmap priorities, driving continuous improvement.</li>
-<li>Developed automation tools & dashboards reducing manual effort for 200+ users.</li>
-<li>Trained & mentored junior teams on complex query handling and service standards.</li>
-<li>Optimized support processes through data-driven insights, SOPs, and streamlined workflows.</li>
-</ul>
-                </div>
-            </section>
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
 
-            <section id="work-experience" class="section">
-                <h2 class="section-title">Work Experience</h2>
-                <div class="carousel-container">
-                    <div class="carousel-track" tabindex="0" id="carouselTrack">
-                        <article class="carousel-item">
-                            <img class="work-logo" src="https://i.ibb.co/99XFKSFT/2025-11-30-T023136-157.jpg" alt="Company logo">
+        <section class="contact-form">
 
-                            <h4>Senior Associate - CX</h4>
-                            <div class="company"><strong>smallcase</strong></div>
-                            <div class="date">April 2025 - Present</div>
-                            <ul>
-                                <li>Leading daily support operations to enhance efficiency, response time, and overall customer satisfaction across partner interactions.</li>
-                                <li>Manage partner support for smallcase Gateway, handling SDK and API-related queries from 50+ fintech partners.</li>
-                                <li>Coordinate between product, engineering, and partner teams to ensure smooth integration, issue resolution, and timely deliverables.</li>
-                                <li>Establishing and maintaining clear communication channels across teams to ensure smooth processes and delivery of high-quality outcomes.</li>
-                                <li>Drive initiatives to improve support quality, communication flow, and process turnaround time (TAT).</li>
-                                <li>Collaborate closely with key stakeholders to identify process gaps, perform RCA, and implement data-driven operational improvements.</li>
-                                <li>Conducting regular follow-ups with key stakeholders to ensure accountability, prevent bottlenecks, and maintain operational consistency.</li>
+          <h3 class="h3 form-title">Contact Form</h3>
 
-                            </ul>
-                        </article>
-                        <article class="carousel-item">
-                            <img class="work-logo" src="https://i.ibb.co/6cRW7hDy/logo-1.png" alt="Company logo">
+          <form action="mailto:faraz30648@gmail.com" 
+      method="post" 
+      enctype="text/plain" class="form" data-form>
 
-                            <h4>Senior Consultant - Customer Support</h4>
-                            <div class="company"><strong>Intouch.Cx</strong></div>
-                            <div class="date">2022 - 2025</div>
-                            <ul>
-                                <li>Led customer support operations across email and Discord, ensuring prompt and professional resolution of user concerns.</li>
-                                <li>Supervised a team to consistently meet SLA targets and maintain operational efficiency across multiple support channels.</li>
-                                <li>Investigated and escalated complex cases, collaborating with internal teams to drive swift, data-backed resolutions.</li>
-                                <li>Partnered with cross-functional teams to improve workflows, communication, and service quality across operations.</li>
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
 
-                            </ul>
-                        </article>
-                        <article class="carousel-item">
-                            <img class="work-logo" src="https://i.ibb.co/27Hn0QS5/images-12.png" alt="Company logo">
-
-                            <h4>Team Supervisor</h4>
-                            <div class="company"><strong>Wakefit</strong></div>
-                            <div class="date">2020 - 2022</div>
-                            <ul>
-                                <li>Supervised an outbound calling team, driving adherence to performance KPIs and improving follow-up efficiency.</li>
-                                <li>Created and maintained multiple team performance reports to identify gaps, track metrics, and implement process improvements.</li>
-                                <li>Built automated reporting systems using Google Forms and Google Sheets, integrating data into a centralized master dashboard with dropdown filters—enabling management to review weekly and monthly performance insights in real time.</li>
-                                <li>Monitored Amazon and Flipkart reviews, identifying negative feedback trends and driving initiatives that converted 40%+ of negative reviews into positive outcomes through proactive outreach.</li>
-                                <li>Collaborated closely with carpentry and service teams to streamline onsite deliveries, installations, and post-service follow-ups.</li>
-                                <li>Contributed to improved operational transparency and reporting accuracy, reducing manual reporting effort.</li>
-                            </ul>
-                        </article>
-
-                        <article class="carousel-item">
-                            <img class="work-logo" src="https://i.ibb.co/ks2hTBms/images-2025-11-30-T021944-260.jpg" alt="Company logo">
-
-                            <h4>Customer Service Advisor</h4>
-                            <div class="company"><strong>Udaan</strong></div>
-                            <div class="date">2019 - 2020</div>
-                            <ul>
-                                <li>Managed inbound and outbound customer communications, ensuring prompt resolution and maintaining service quality standards.</li>
-                                <li>Supervised an outbound calling team, optimizing performance and adherence to operational SLAs.</li>
-                                <li>Handled over 100+ customer interactions daily across multiple channels, maintaining high accuracy and efficiency.</li>
-                                <li>Designed and implemented a Knowledge Base using Google Sites and Awesome Tables, improving information accessibility for 200+ employees.</li>
-                                <li>Developed the “Promise Engine” using Google Sheets to automate TAT estimations for issue types, reducing manual effort and enhancing process transparency.</li>
-                                <li>Contributed to improving workflow efficiency and documentation practices across multiple CX functions.</li>
-                            </ul>
-                        </article>
-
-                                                <article class="carousel-item">
-                            <img class="work-logo" src="https://i.ibb.co/Ld3Z6004/images-13.png" alt="Company logo">
-
-                            <h4>Senior Operations Executive</h4>
-                            <div class="company"><strong>Ajio (Aegis Ltd)</strong></div>
-                            <div class="date">2016 - 2018</div>
-                            <ul>
-                                <li>Managed customer escalations and served as part of the social media response team, ensuring timely and brand-consistent resolutions.</li>
-                                <li>Handled customer interactions across calls, emails, and social platforms, maintaining high responsiveness and accuracy.</li>
-                                <li>Processed and resolved 100+ daily interactions, balancing speed and quality in a high-volume environment.</li>
-                                <li>Coordinated with internal teams to resolve escalated cases efficiently and maintain a positive customer sentiment on public channels.</li>
-                                <li>Contributed to improving escalation workflows, reducing turnaround time and enhancing service consistency across channels.</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-
-                <div id="experience-controls" class="flex justify-between items-center mt-4 p-2">
-                    <button class="carousel-nav" id="prev-btn" aria-label="Previous Work Experience">‹</button>
-                    <div id="experience-indicators" class="flex items-center space-x-2"></div>
-                    <button class="carousel-nav" id="next-btn" aria-label="Next Work Experience">›</button>
-                </div>
-            </section>
-
-            <section id="skills" class="section">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category" id="soft-skills">
-                        <h3>CX & Leadership Skills</h3>
-                        <ul>
-                            <li>Workflow automation & process design for scalable CX operations</li>
-                            <li>Customer journey optimization across touchpoints to reduce friction and improve CSAT</li>
-                            <li>Customer experience strategy and continuous improvement mindset</li>
-                            <li>Team management and cross-functional collaboration</li>
-                            <li>People leadership, coaching, and mentoring</li>
-                            <li>Reporting, analysis, and data-driven decision-making</li>
-                            <li>Technical customer support and issue resolution</li>
-                            <li>Operations management and stakeholder coordination</li>
-                            <li>Strong analytical and problem-solving skills</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category" id="tech-skills">
-                        <h3>Technical Skills</h3>
-                        <ul>
-                            <li>Productivity & Office Tools: Google Workspace (Sheets, Docs, Sites), Microsoft Office Suite (Excel, Word, PowerPoint)</li>
-                            <li>Data & Analytics: Basic SQL (MySQL), Google Analytics, Dashboard creation and reporting automation</li>
-                            <li>Design & Visualization: Canva, Adobe Photoshop (basic), CorelDRAW (basic)</li>
-                            <li>Automation & Tools: Workflow automation using Google Apps Script and Sheets integrations (optional — can add if you’ve done any automation work)</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" class="cta-section">
-                <h2>Let's Work Together</h2>
-                <p>I'm always open to discussing new opportunities and bringing value to customer service teams.</p>
-                <div>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=faraz30648@gmail.com&su=Let%27s%20Connect" target="_blank" class="btn btn-primary">
-    Get In Touch
-</a>
-
-                    <a href="https://drive.google.com/file/d/1V0dfRNU9egQlGz3pnpe6X7X9SaAsQB-G/view?usp=drivesdk"
-                        class="btn btn-secondary">View CV</a>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="footer">
-  <div class="footer-icons">
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/faraz-ahmed-43b3a3200/" target="_blank" aria-label="LinkedIn profile">
-          <svg viewBox="0 0 24 24">
-              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.18h4.55V24H.22V8.18zM8.09 8.18h4.36v2.15h.06c.61-1.15 2.11-2.36 4.34-2.36C22.26 7.97 24 10.2 24 14.3V24h-4.55v-9.12c0-2.18-.04-4.98-3.04-4.98-3.04 0-3.51 2.37-3.51 4.82V24H8.09V8.18z"/>
-          </svg>
-      </a>
-
-      <!-- GitHub -->
-      <a href="https://github.com" target="_blank" aria-label="GitHub profile">
-          <svg viewBox="0 0 24 24">
-              <path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.55-3.87-1.55-.53-1.36-1.31-1.72-1.31-1.72-1.07-.74.08-.73.08-.73 1.18.08 1.8 1.22 1.8 1.22 1.05 1.8 2.75 1.28 3.42.98.11-.77.41-1.28.75-1.57-2.55-.29-5.23-1.28-5.23-5.72 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.65.23 2.87.11 3.17.75.81 1.2 1.84 1.2 3.1 0 4.46-2.69 5.42-5.26 5.7.42.36.8 1.08.8 2.18v3.24c0 .31.21.67.8.56A10.99 10.99 0 0 0 23.5 12C23.5 5.74 18.27.5 12 .5z"/>
-          </svg>
-      </a>
-
-      <!-- Email -->
-      <a href="mailto:faraz30648@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24">
-              <path d="M12 13.065L1.5 6V18c0 1.1.9 2 2 2h17c1.1 0 2-.9 2-2V6l-10.5 7.065zM12 11L1.5 4h21L12 11z"/>
-          </svg>
-      </a>
-  </div>
-
-  <p>&copy; 2025 Faraz Ahmed. All rights reserved.</p>
-</footer>
-
-    </div>
-
-    <button class="back-to-top-fab" id="backToTopFab" aria-label="Back to Profile Card">↑</button>
-
-    <script>
-        // ----------------------------------------------------
-        // START: SWIPE DOWN/UP LOGIC & FAB CONTROL
-        // ----------------------------------------------------
-        // Small global guard to prevent navigation/scroll handlers from running
-        // while a modal open/close scroll restoration is in progress.
-        let isModalTransition = false;
-
-        const swipeDownBtn = document.getElementById('swipeDownBtn');
-        const backToTopFab = document.getElementById('backToTopFab');
-        const headerHeight = window.innerHeight;
-
-        function openContent() {
-            // If a modal transition is happening, ignore user attempt to open content
-            if (isModalTransition) return;
-
-            document.body.classList.add('header-open');
-            document.documentElement.classList.add('header-open');
-            if (swipeDownBtn) swipeDownBtn.style.display = 'none';
-        }
-
-        function closeContent() {
-            if (isModalTransition) return;
-
-            document.body.classList.remove('header-open');
-            document.documentElement.classList.remove('header-open');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            setTimeout(() => {
-                if (swipeDownBtn) swipeDownBtn.style.display = 'inline-flex';
-                backToTopFab.classList.remove('visible');
-            }, 500);
-        }
-
-
-        // 1. Swipe Down Button Listener
-        if (swipeDownBtn) swipeDownBtn.addEventListener('click', openContent);
-
-        // 2. Back-to-Top FAB Listener
-        backToTopFab.addEventListener('click', () => {
-            if (isModalTransition) return;
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            setTimeout(closeContent, 500);
-        });
-
-        // 3. Show/Hide FAB on Scroll
-        window.addEventListener('scroll', () => {
-            if (isModalTransition) return;  // <-- guard prevents jump artifacts while modal finishing
-            if (document.body.classList.contains('header-open') && window.scrollY > headerHeight * 0.1) {
-                backToTopFab.classList.add('visible');
-            } else {
-                backToTopFab.classList.remove('visible');
-            }
-        });
-
-        // Smooth Scrolling and Menu Close Logic
-        document.querySelectorAll('.nav-list a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                // Prevent nav clicks during a modal open/close transition
-                if (isModalTransition) {
-                    e.preventDefault();
-                    return;
-                }
-
-                e.preventDefault();
-
-                openContent();
-
-                const navList = document.getElementById('navList');
-                const menuToggle = document.getElementById('menuToggle');
-                if (navList.classList.contains('open')) {
-                    navList.classList.remove('open');
-                    menuToggle.classList.remove('active');
-                }
-
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    setTimeout(() => {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 800);
-                }
-            });
-        });
-
-        // Hamburger Menu Toggle Logic
-        const menuToggle = document.getElementById('menuToggle');
-        const navList = document.getElementById('navList');
-
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('open');
-            menuToggle.classList.toggle('active');
-        });
-
-        // ----------------------------------------------------
-        // END: SWIPE DOWN/UP LOGIC & FAB CONTROL
-        // ----------------------------------------------------
-
-
-        // ----------------------------------------------------
-        // START: CAROUSEL LOGIC
-        // ----------------------------------------------------
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const indicatorsContainer = document.getElementById('experience-indicators');
-        const items = document.querySelectorAll('.carousel-item');
-        const itemCount = items.length;
-        let currentIndex = 0;
-        let itemWidth = 0;
-
-        function renderIndicators() {
-            indicatorsContainer.innerHTML = '';
-            for (let i = 0; i < itemCount; i++) {
-                const indicator = document.createElement('button');
-                indicator.classList.add('carousel-indicator');
-                indicator.setAttribute('aria-label', `Go to work experience ${i + 1}`);
-                indicator.dataset.index = i;
-
-                if (i === currentIndex) {
-                    indicator.classList.add('active');
-                }
-
-                indicator.addEventListener('click', (e) => {
-                    const targetIndex = parseInt(e.target.dataset.index);
-                    scrollToIndex(targetIndex);
-                });
-
-                indicatorsContainer.appendChild(indicator);
-            }
-        }
-
-        function updateCarouselState() {
-            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-
-            // Check if scroll position is at start or end
-            const isAtStart = track.scrollLeft < 10;
-            const isAtEnd = track.scrollWidth - track.scrollLeft - track.clientWidth < 10;
-
-            prevBtn.disabled = isAtStart;
-            nextBtn.disabled = isAtEnd;
-
-            // Double check: if it's the first or last index, disable buttons
-            if (currentIndex === 0) prevBtn.disabled = true;
-            if (currentIndex === itemCount - 1) nextBtn.disabled = true;
-        }
-
-
-        function scrollToIndex(index) {
-            if (index < 0 || index >= itemCount) return;
-
-            // Recalculate itemWidth (including gap of 24px)
-            if (items.length > 0) {
-                // Calculate item width + 24px gap. Use getBoundingClientRect().width for accuracy.
-                itemWidth = items[0].getBoundingClientRect().width + 24;
-            }
-
-            const scrollAmount = index * itemWidth;
-            track.scroll({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-            currentIndex = index;
-            updateCarouselState();
-        }
-
-        // Use a debounced/throttle function for resize and load to recalculate itemWidth
-        function recalculateAndScroll() {
-            if (items.length > 0) {
-                // Calculate item width + 24px gap. Use getBoundingClientRect for width.
-                itemWidth = items[0].getBoundingClientRect().width + 24;
-                // Scroll to the current index based on the new itemWidth
-                track.scroll({
-                    left: currentIndex * itemWidth,
-                    behavior: 'auto'
-                });
-                updateCarouselState();
-            }
-        }
-
-        window.addEventListener('resize', recalculateAndScroll);
-
-
-        prevBtn.addEventListener('click', () => {
-            scrollToIndex(currentIndex - 1);
-        });
-
-        nextBtn.addEventListener('click', () => {
-            scrollToIndex(currentIndex + 1);
-        });
-
-        track.addEventListener('scroll', () => {
-            if (isModalTransition) return; // don't adjust currentIndex during modal transitions
-            if (items.length === 0) return;
-            const scrollLeft = track.scrollLeft;
-
-            // Recalculate item width including gap (24px)
-            const itemFullWidth = items[0].offsetWidth + 24;
-
-            // Calculate the closest index based on scroll position
-            let newIndex = Math.round(scrollLeft / itemFullWidth);
-
-            newIndex = Math.max(0, Math.min(itemCount - 1, newIndex));
-
-            if (newIndex !== currentIndex) {
-                currentIndex = newIndex;
-                updateCarouselState();
-            }
-        });
-
-
-        // Initialization on load
-        window.addEventListener('load', () => {
-            renderIndicators();
-            recalculateAndScroll(); // Initial check/calculation
-
-            // Animations
-            const profilePic = document.getElementById('profilePic');
-            if (profilePic) {
-                profilePic.classList.remove('initial-load');
-                profilePic.classList.add('animate');
-            }
-
-            const userName = document.getElementById('userName');
-            if (userName) {
-                setTimeout(() => {
-                    userName.classList.remove('initial-name-load');
-                    userName.classList.add('animate-name');
-                }, 300);
-            }
-        });
-
-        // ----------------------------------------------------
-        // END: CAROUSEL LOGIC
-        // ----------------------------------------------------
-
-
-        // ----------------------------------------------------
-        // PARALLAX BACKGROUND (MOBILE SAFE) - update --bg-shift
-        // ----------------------------------------------------
-        // We'll update :root --bg-shift in pixels based on scrollY (affects body::before background-position)
-        (function () {
-            const maxShift = 120; // max px shift to avoid extreme movement
-            function onScroll() {
-                // When header is on screen (not scrolled into content) we still want some small shift
-                const scrollY = window.scrollY || document.documentElement.scrollTop;
-                // scale down movement for subtle effect
-                const shift = Math.min(maxShift, scrollY * 0.15);
-                // set the CSS variable (positive shifts move image downward)
-                document.documentElement.style.setProperty('--bg-shift', shift + "px");
-            }
-
-            // throttle using requestAnimationFrame for smoothness
-            let ticking = false;
-            window.addEventListener('scroll', function () {
-                if (!ticking) {
-                    window.requestAnimationFrame(function () {
-                        onScroll();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, { passive: true });
-
-            // initial set
-            onScroll();
-        })();
-        // ----------------------------------------------------
-        // END PARALLAX
-        // ----------------------------------------------------
-
-        </script>
-
-<!-- WORK EXPERIENCE MODAL -->
-<div id="workModal" class="work-modal">
-    <div class="work-modal-backdrop"></div>
-    <div class="work-modal-box">
-        <button id="workModalClose" class="work-modal-close">Close</button>
-        <div id="workModalContent"></div>
-    </div>
-</div>
-
-<script>
-/* ---- WORK EXPERIENCE MODAL ---- */
-const workModal = document.getElementById("workModal");
-const workModalContent = document.getElementById("workModalContent");
-const workModalClose = document.getElementById("workModalClose");
-let savedScrollY = 0;
-
-
-document.querySelectorAll(".carousel-item").forEach(card => {
-    card.addEventListener("click", () => {
-
-        // mark transition guard so other handlers don't fight the scroll restoration
-        isModalTransition = true;
-
-        savedScrollY = window.scrollY;
-
-        // apply the "freeze" state
-        document.documentElement.classList.add("modal-fixing-scroll");
-        document.body.classList.add("modal-fixing-scroll");
-
-        document.body.style.position = "fixed";
-        document.body.style.top = `-${savedScrollY}px`;
-
-        const logo = card.querySelector(".work-logo")?.src || "";
-        const role = card.querySelector("h4")?.innerText || "";
-        const company = card.querySelector(".company")?.innerText || "";
-        const date = card.querySelector(".date")?.innerText || "";
-        const bullets = [...card.querySelectorAll("ul li")].map(li => li.innerText);
-
-        workModalContent.innerHTML = `
-            <div class="modal-header-row">
-                <img class="modal-logo-left" src="${logo}" alt="">
-                <div class="modal-header-text">
-                    <h3 class="modal-role">${role}</h3>
-                    <div class="modal-company">${company}</div>
-                    <div class="modal-date">${date}</div>
-                </div>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
             </div>
 
-            <ul class="modal-bullets">
-                ${bullets.map(b => `<li>${b}</li>`).join("")}
-            </ul>
-        `;
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
 
-        workModal.classList.add("active");
-        document.body.classList.add("modal-open");
-        document.documentElement.classList.add("modal-open");
-    });
-});
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
 
-/* ---- PERFECT SCROLL-SAFE MODAL CLOSE (Option A base, preserved) ---- */
-function closeWorkModal() {
-    // ensure other handlers ignore events while we restore the scroll
-    isModalTransition = true;
+          </form>
 
-    workModal.classList.remove("active");
+        </section>
 
-    // Unfreeze scroll safely (remove modal-open first so CSS changes take effect)
-    document.body.classList.remove("modal-open");
-    document.documentElement.classList.remove("modal-open");
-
-    document.body.style.position = "";
-    document.body.style.top = "";
-
-    // requestAnimationFrame twice to allow browser to settle layout before restoring scroll
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            // jump back to saved scroll position (this is Option A logic you selected)
-            window.scrollTo(0, savedScrollY);
-
-            // after a small delay (let browser paint), release guard so other handlers resume
-            setTimeout(() => {
-                // remove the fixing-scroll classes now that we've restored the scroll
-                document.documentElement.classList.remove("modal-fixing-scroll");
-                document.body.classList.remove("modal-fixing-scroll");
-
-                // release transition guard
-                isModalTransition = false;
-            }, 220);
-        });
-    });
-}
-
-// Close via button
-workModalClose.addEventListener("click", closeWorkModal);
-
-// Close via clicking backdrop
-workModal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("work-modal")) {
-        closeWorkModal();
-    }
-});
-
-
-</script>
-
-
-<!-- PROFILE MODAL -->
-<div id="profileModal" class="profile-modal">
-    <div class="profile-modal-backdrop"></div>
-
-    <div class="profile-modal-box">
-
-  <button id="profileModalClose" class="profile-modal-close">×</button>
-
-  <!-- NEW HEADER -->
-  <div class="profile-modal-header-center">
-      <h2 class="pm-name">Faraz Ahmed</h2>
-      <span class="role-pill">Senior Associate Manager (CX)</span>
-  </div>
-
-        <div class="profile-modal-content">
-
-    <img id="profileModalImg" 
-         class="profile-modal-img"
-         src="https://i.ibb.co/r2srGXB4/Untitled-design-1.png" 
-         alt="Profile">
-
-    <div class="profile-details">
-
-
-
-        <p class="detail-row"><strong>Location:</strong> Bangalore</p>
-        <p class="detail-row"><strong>Phone:</strong> +91 96639 16454</p>
-        <p class="detail-row"><strong>Email:</strong> faraz30648@gmail.com</p>
-
-        <!-- SOCIAL ICONS INSIDE PROFILE MODAL -->
-<div class="profile-modal-icons">
-    <a href="https://www.linkedin.com/in/faraz-ahmed-43b3a3200/" target="_blank" class="pm-icon" aria-label="LinkedIn profile">
-        <svg viewBox="0 0 24 24">
-            <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.18h4.55V24H.22V8.18zM8.09 8.18h4.36v2.15h.06c.61-1.15 2.11-2.36 4.34-2.36C22.26 7.97 24 10.2 24 14.3V24h-4.55v-9.12c0-2.18-.04-4.98-3.04-4.98-3.04 0-3.51 2.37-3.51 4.82V24H8.09V8.18z"/>
-        </svg>
-    </a>
-
-    <a href="mailto:faraz30648@gmail.com" class="pm-icon" aria-label="Email">
-        <svg viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 13.065L1.5 6V18c0 1.1.9 2 2 2h17c1.1 0 2-.9 2-2V6l-10.5 7.065zM12 11L1.5 4h21L12 11z"/>
-        </svg>
-    </a>
-
-    <a href="tel:+919164567759" class="pm-icon" aria-label="Phone">
-        <svg viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6.62 10.79a15.464 15.464 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V21a1 1 0 01-1 1C10.07 22 2 13.93 2 3a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/>
-        </svg>
-    </a>
-</div>
+      </article>
 
     </div>
 
-</div>
-    </div>
-</div>
+  </main>
 
 
-<script>
-/* === PROFILE MODAL LOGIC (FINAL) === */
-const profilePicHeader = document.getElementById("profilePic");
-const profileModal = document.getElementById("profileModal");
-const profileModalClose = document.getElementById("profileModalClose");
+  <script>
+    'use strict';
 
-profilePicHeader.addEventListener("click", () => {
-    // guard other handlers briefly while we open the profile modal
-    isModalTransition = true;
+    // element toggle function
+    const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
-    profileModal.classList.add("active");
-    document.body.classList.add("modal-open");
-    document.documentElement.classList.add("modal-open");
 
-    // small timeout to release guard once modal is visibly open
-    setTimeout(() => {
-        isModalTransition = false;
-    }, 160);
-});
+    // sidebar variables
+    const sidebar = document.querySelector("[data-sidebar]");
+    const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-profileModalClose.addEventListener("click", () => {
-    isModalTransition = true;
+    // sidebar toggle functionality for mobile
+    sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
 
-    profileModal.classList.remove("active");
-    document.body.classList.remove("modal-open");
-    document.documentElement.classList.remove("modal-open");
 
-    // release after a short delay so other handlers don't interfere with repaint
-    setTimeout(() => {
-        isModalTransition = false;
-    }, 220);
-});
+    // testimonials variables
+    const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
+    const modalContainer = document.querySelector("[data-modal-container]");
+    const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
+    const overlay = document.querySelector("[data-overlay]");
 
-profileModal.addEventListener("click", (e) => {
-    if (e.target.classList.contains("profile-modal")) {
-        isModalTransition = true;
-        profileModal.classList.remove("active");
-        document.body.classList.remove("modal-open");
-        document.documentElement.classList.remove("modal-open");
+    // modal variables
+    const modalImg = document.querySelector("[data-modal-img]");
+    const modalTitle = document.querySelector("[data-modal-title]");
+    const modalText = document.querySelector("[data-modal-text]");
+    const modalDate = document.querySelector("[data-modal-date]"); // Modal Date element
+    const modalDesignation = document.querySelector("[data-modal-designation]"); // NEW: Modal Designation element
 
-        setTimeout(() => {
-            isModalTransition = false;
-        }, 220);
+
+    // modal toggle function
+    const modalFunc = function () {
+      modalContainer.classList.toggle("active");
+      overlay.classList.toggle("active");
     }
-});
-</script>
 
+    // add click event to all modal close button
+    modalCloseBtn.addEventListener("click", modalFunc);
+    overlay.addEventListener("click", modalFunc);
+
+    // add event in all testimonials items
+    for (let i = 0; i < testimonialsItem.length; i++) {
+
+      testimonialsItem[i].addEventListener("click", function () {
+
+        modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
+        modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
+        modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
+        
+        // NEW: Populate the designation in the modal
+        modalDesignation.innerHTML = this.querySelector("[data-testimonials-designation]").innerHTML;
+
+        // Populate the date in the modal
+        modalDate.innerHTML = this.querySelector("[data-testimonials-date]").innerHTML; 
+
+        modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
+
+        modalFunc();
+
+      });
+    }
+
+
+    // contact form variables
+    const form = document.querySelector("[data-form]");
+    const formInputs = document.querySelectorAll("[data-form-input]");
+    const formBtn = document.querySelector("[data-form-btn]");
+
+    // Form validation (keep existing)
+    for (let i = 0; i < formInputs.length; i++) {
+      formInputs[i].addEventListener("input", function () {
+        if (form.checkValidity()) {
+          formBtn.removeAttribute("disabled");
+        } else {
+          formBtn.setAttribute("disabled", "");
+        }
+      });
+    }
+
+    // Handle form submission
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      const fullname = formData.get('fullname');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      const subject = encodeURIComponent(`Contact Form: Message from ${fullname}`);
+      const body = encodeURIComponent(
+        `Name: ${fullname}\n` +
+        `Email: ${email}\n` +
+        `Message:\n${message}`
+      );
+      
+      window.location.href = `mailto:faraz30648@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Optional: Reset form and disable button
+      form.reset();
+      formBtn.setAttribute("disabled", "");
+    });
+
+
+    // page navigation variables
+    const navigationLinks = document.querySelectorAll("[data-nav-link]");
+    const pages = document.querySelectorAll("[data-page]");
+
+    // add event to all nav link
+    for (let i = 0; i < navigationLinks.length; i++) {
+      navigationLinks[i].addEventListener("click", function () {
+
+        for (let j = 0; j < pages.length; j++) {
+          if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
+            pages[j].classList.add("active");
+            navigationLinks[j].classList.add("active");
+            window.scrollTo(0, 0);
+          } else {
+            pages[j].classList.remove("active");
+            navigationLinks[j].classList.remove("active");
+          }
+        }
+
+      });
+    }
+  </script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 
